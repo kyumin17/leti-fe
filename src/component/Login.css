@@ -1,0 +1,23 @@
+.log-in {
+  display: flex;
+}
+
+.banner {
+  background: #232323;
+  color: white;
+  width: 45%;
+  height: 100vh;
+  align-content: center;
+}
+.banner-txt {
+  background-image: linear-gradient(90deg, #F4CE14 0%, #379777 60%, #379777 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 5.5rem;
+  font-weight: 500;
+}
+.banner-txt-area {
+  margin-left: 1.5rem;
+  margin-bottom: 2rem;
+}
