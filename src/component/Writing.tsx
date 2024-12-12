@@ -1,8 +1,9 @@
 import "./Writing.css";
 import Frame from "./Frame.tsx";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Editor, EditorState, RichUtils } from "draft-js";
 import "draft-js/dist/Draft.css";
+import axios from "axios";
 
 export default function Writing() {
   const [editorState, setEditorState] = useState(() =>
@@ -12,7 +13,7 @@ export default function Writing() {
   return (
     <Frame
       left={<div>+ new page</div>}
-      top={<div>Today I Learned</div>}
+      top={<div>today I learned</div>}
       selectIdx={2}
     >
       <div className="editor">
@@ -75,10 +76,43 @@ function ToolBar({ editorState, setEditorState }) {
 }
 
 function TextArea({ editorState, setEditorState }) {
+  const titleRef = useRef(null);
+
+  async function savePost() {
+    const title = titleRef.current.value;
+    const content = editorState.getCurrentContent().getPlainText();
+
+    if (!title || !content) {
+      alert("please write title or content");
+      return;
+    }
+
+    // 임시 데이터
+    const form = {
+      user_id: 1,
+      tag_id: 1,
+      tag_name: "frontend",
+      title: titleRef.current.value,
+      content: editorState.getCurrentContent().getPlainText(),
+      create_year: 2024,
+      create_month: 10,
+      create_date: 3
+    };
+
+    try {
+      await axios.post("http://localhost:3001/posts", form);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <div className="text-area">
       <div className="text-area-header">
-        <input type="text" className="text-area-title" spellCheck="false" placeholder="untitled" />
+        <input type="text" className="text-area-title" spellCheck="false" placeholder="untitled" ref={titleRef} />
+        <button onClick={savePost}>
+          save
+        </button>
       </div>
       <div className="text-area-body">
         <Editor 

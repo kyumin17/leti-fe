@@ -1,5 +1,5 @@
 .article-title {
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   margin-bottom: 1rem;
   font-weight: 600;
 }
@@ -20,7 +20,13 @@
   height: calc(100% - 0.5rem);
 }
 .article {
-  padding: 1.5rem 2rem;
+  padding: 2.2rem 2.3rem;
+}
+.article-crate-time {
+  font-size: 0.9rem;
+  color: grey;
+  font-weight: 400;
+  margin-left: 0.5rem;
 }
 .list-element {
   padding: 0.2rem 1rem;
@@ -36,4 +42,14 @@
 .list-element:hover:not(.list-element-select) {
   background-color: #fcfcfc;
   border-left: 2px solid #919191;
+}
+.tag {
+  padding: 0.1rem 0.3rem;
+  margin: 0.3rem 0;
+  border-radius: 0.2rem;
+}
+.tag-selected {
+  background-color: #EAF2FF;
+  color: var(--main-color);
+  font-weight: 400;
 }
